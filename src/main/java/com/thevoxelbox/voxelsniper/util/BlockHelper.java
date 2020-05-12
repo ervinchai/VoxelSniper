@@ -156,7 +156,7 @@ public class BlockHelper {
      */
     @SuppressWarnings("deprecation")
     public final Block getFaceBlock() {
-        while ((this.getNextBlock() != null) && (this.getCurBlock().getType() == Material.AIR)) {
+        while ((this.getNextBlock() != null) && isAir(this.getCurBlock().getType())) {
         }
 
         if (this.getCurBlock() != null) {
@@ -229,7 +229,7 @@ public class BlockHelper {
     @SuppressWarnings("deprecation")
     public final Block getTargetBlock() {
         this.fromOffworld();
-        while ((this.getNextBlock() != null) && (this.getCurBlock().getType() == Material.AIR)) {
+        while ((this.getNextBlock() != null) && isAir(this.getCurBlock().getType())) {
 
         }
         return this.getCurBlock();
@@ -255,7 +255,7 @@ public class BlockHelper {
 
         } while ((this.length <= this.range) && ((this.targetX == this.lastX) && (this.targetY == this.lastY) && (this.targetZ == this.lastZ)));
 
-        if (this.world.getBlockAt(this.targetX, this.targetY, this.targetZ).getType() != Material.AIR) {
+        if (!isAir(this.world.getBlockAt(this.targetX, this.targetY, this.targetZ).getType())) {
             return this.world.getBlockAt(this.targetX, this.targetY, this.targetZ);
         }
 
@@ -265,7 +265,19 @@ public class BlockHelper {
             return this.getRange();
         }
     }
-
+        /**
+         * @return if the block is Empty.
+         */
+        private boolean isAir(Material material) {
+            switch (material){
+                case AIR:
+                case CAVE_AIR:
+                case VOID_AIR:   
+                   return true;
+                default:
+                    return false;
+            }
+        }
     private void init(final Location location, final double range, final double step, final double viewHeight) {
         this.playerLoc = location;
         this.viewHeight = viewHeight;
