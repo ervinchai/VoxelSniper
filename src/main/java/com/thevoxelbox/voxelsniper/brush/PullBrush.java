@@ -89,20 +89,20 @@ public class PullBrush extends Brush {
      * @return boolean
      */
     private boolean isSurface(final int x, final int y, final int z) {
-        return this.getBlockMaterialAt(x, y, z) != Material.AIR
-                && ((this.getBlockMaterialAt(x, y - 1, z) == Material.AIR)
-                || (this.getBlockMaterialAt(x, y + 1, z) == Material.AIR)
-                || (this.getBlockMaterialAt(x + 1, y, z) == Material.AIR)
-                || (this.getBlockMaterialAt(x - 1, y, z) == Material.AIR)
-                || (this.getBlockMaterialAt(x, y, z + 1) == Material.AIR)
-                || (this.getBlockMaterialAt(x, y, z - 1) == Material.AIR));
+        return !isAir(this.getBlockMaterialAt(x, y, z))
+                && (isAir(this.getBlockMaterialAt(x, y - 1, z))
+                || isAir(this.getBlockMaterialAt(x, y + 1, z))
+                || isAir(this.getBlockMaterialAt(x + 1, y, z))
+                || isAir(this.getBlockMaterialAt(x - 1, y, z))
+                || isAir(this.getBlockMaterialAt(x, y, z + 1))
+                || isAir(this.getBlockMaterialAt(x, y, z - 1)));
 
     }
 
     @SuppressWarnings("deprecation")
     private void setBlock(final BlockWrapper block) {
         final Block currentBlock = this.clampY(block.getX(), block.getY() + (int) (this.vh * block.getStr()), block.getZ());
-        if (this.getBlockMaterialAt(block.getX(), block.getY() - 1, block.getZ()) == Material.AIR) {
+        if (isAir(this.getBlockMaterialAt(block.getX(), block.getY() - 1, block.getZ()))) {
             currentBlock.setBlockData(block.getBlockData());
             for (int y = block.getY(); y < currentBlock.getY(); y++) {
                 this.setBlockMaterialAt(block.getZ(), block.getX(), y, Material.AIR);
@@ -178,7 +178,7 @@ public class PullBrush extends Brush {
                         final double volume = zSquared + xSquared + (y * y);
 
                         // Is this in the range of the brush?
-                        if (volume <= brushSizeSquared && this.getWorld().getBlockAt(actualX, this.getTargetBlock().getY() + y, actualZ).getType() != Material.AIR) {
+                        if (volume <= brushSizeSquared && !isAir(this.getWorld().getBlockAt(actualX, this.getTargetBlock().getY() + y, actualZ).getType())) {
 
                             int actualY = this.getTargetBlock().getY() + y;
 
@@ -220,7 +220,7 @@ public class PullBrush extends Brush {
                     final int actualX = this.getTargetBlock().getX() + x;
                     for (int y = -v.getBrushSize(); y <= v.getBrushSize(); y++) {
                         double volume = (xSquared + Math.pow(y, 2) + zSquared);
-                        if (volume <= brushSizeSquared && this.getWorld().getBlockAt(actualX, this.getTargetBlock().getY() + y, actualZ).getType() != Material.AIR) {
+                        if (volume <= brushSizeSquared && !isAir(this.getWorld().getBlockAt(actualX, this.getTargetBlock().getY() + y, actualZ).getType())) {
                             final int actualY = this.getTargetBlock().getY() + y;
                             lastY = actualY + (int) (this.vh * this.getStr(volume / brushSizeSquared));
                             this.clampY(actualX, lastY, actualZ).setType(this.getWorld().getBlockAt(actualX, actualY, actualZ).getType());

@@ -124,7 +124,7 @@ public class OceanBrush extends Brush {
                 // go down from highest Y block down to new sea floor
                 for (int y = highestY; y > newSeaFloorLevel; y--) {
                     final Block block = world.getBlockAt(x, y, z);
-                    if (!block.getType().equals(Material.AIR)) {
+                    if (!isAir(block.getType())) {
                         undo.put(block);
                         block.setType(Material.AIR);
                     }
@@ -135,7 +135,7 @@ public class OceanBrush extends Brush {
                     final Block block = world.getBlockAt(x, y, z);
                     if (!block.getType().equals(Material.WATER)) {
                         // do not put blocks into the undo we already put into
-                        if (!block.getType().equals(Material.AIR)) {
+                        if (!isAir(block.getType())) {
                             undo.put(block);
                         }
                         block.setType(Material.WATER);

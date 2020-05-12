@@ -275,4 +275,15 @@ public abstract class Brush implements IBrush {
     protected final void setBlockMaterialAndDataAt(int x, int y, int z, BlockData blockData) {
         this.getWorld().getBlockAt(x, y, z).setBlockData(blockData, true);
     }
+
+    protected final boolean isAir(Material material){
+        switch (material){
+            case AIR:
+            case CAVE_AIR:
+            case VOID_AIR:   
+               return true;
+            default:
+                return false;
+        }
+    }
 }

@@ -57,7 +57,7 @@ public class UnderlayBrush extends PerformerBrush {
                                     case SNOW:
                                     case OBSIDIAN:
                                         for (int d = 0; (d < this.depth); d++) {
-                                            if (this.clampY(this.getTargetBlock().getX() + x, y + d, this.getTargetBlock().getZ() + z).getType() != Material.AIR) {
+                                            if (!isAir(this.clampY(this.getTargetBlock().getX() + x, y + d, this.getTargetBlock().getZ() + z).getType())) {
                                                 this.currentPerformer.perform(this.clampY(this.getTargetBlock().getX() + x, y + d, this.getTargetBlock().getZ() + z)); // fills down as many layers as you specify in
                                                 // parameters
                                                 memory[x + v.getBrushSize()][z + v.getBrushSize()] = 1; // stop it from checking any other blocks in this vertical 1x1 column.
@@ -70,7 +70,7 @@ public class UnderlayBrush extends PerformerBrush {
                                 }
                             } else {
                                 for (int d = 0; (d < this.depth); d++) {
-                                    if (this.clampY(this.getTargetBlock().getX() + x, y + d, this.getTargetBlock().getZ() + z).getType() != Material.AIR) {
+                                    if (isAir(this.clampY(this.getTargetBlock().getX() + x, y + d, this.getTargetBlock().getZ() + z).getType())) {
                                         this.currentPerformer.perform(this.clampY(this.getTargetBlock().getX() + x, y + d, this.getTargetBlock().getZ() + z)); // fills down as many layers as you specify in
                                         // parameters
                                         memory[x + v.getBrushSize()][z + v.getBrushSize()] = 1; // stop it from checking any other blocks in this vertical 1x1 column.

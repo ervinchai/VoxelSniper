@@ -187,7 +187,7 @@ public class Rot3DBrush extends Brush {
                         // after all three, though.
 
                         final BlockWrapper block = this.snap[x][y][z];
-                        if (block.getMaterial() == Material.AIR) {
+                        if (isAir(block.getMaterial())) {
                             continue;
                         }
                         this.setBlockMaterialAndDataAt(this.getTargetBlock().getX() + (int) newxyX, this.getTargetBlock().getY() + (int) newyzY, this.getTargetBlock().getZ() + (int) newyzZ, block.getBlockData());

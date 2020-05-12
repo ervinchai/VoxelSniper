@@ -67,7 +67,7 @@ public class OverlayBrush extends PerformerBrush {
 
     @SuppressWarnings("deprecation")
     private boolean isOverrideableMaterial(Material material) {
-        if (allBlocks && !(material == Material.AIR)) {
+        if (allBlocks && !(isAir(material))) {
             return true;
         }
 
@@ -106,8 +106,8 @@ public class OverlayBrush extends PerformerBrush {
                 for (int y = this.getTargetBlock().getY(); y > 0 && !surfaceFound; y--) { // start scanning from the height you clicked at
                     if (memory[x + brushSize][z + brushSize] != 1) { // if haven't already found the surface in this column
                         if ((Math.pow(x, 2) + Math.pow(z, 2)) <= brushSizeSquared) { // if inside of the column...
-                            if (this.getBlockMaterialAt(this.getTargetBlock().getX() + x, y - 1, this.getTargetBlock().getZ() + z) != Material.AIR) { // if not a floating block (like one of Notch'world pools)
-                                if (this.getBlockMaterialAt(this.getTargetBlock().getX() + x, y + 1, this.getTargetBlock().getZ() + z) == Material.AIR) { // must start at surface... this prevents it filling stuff in if
+                            if (!isAir(this.getBlockMaterialAt(this.getTargetBlock().getX() + x, y - 1, this.getTargetBlock().getZ() + z))) { // if not a floating block (like one of Notch'world pools)
+                                if (isAir(this.getBlockMaterialAt(this.getTargetBlock().getX() + x, y + 1, this.getTargetBlock().getZ() + z))) { // must start at surface... this prevents it filling stuff in if
                                     // you click in a wall and it starts out below surface.
                                     if (!this.allBlocks) { // if the override parameter has not been activated, go to the switch that filters out manmade stuff.
 
