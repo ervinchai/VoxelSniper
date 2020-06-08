@@ -30,7 +30,7 @@ public class VoxelPerformerCommand extends VoxelCommand {
     public boolean doCommand(Player player, String[] args) {
         Sniper sniper = VoxelProfileManager.getInstance().getSniperForPlayer(player);
         SnipeData snipeData = sniper.getSnipeData(sniper.getCurrentToolId());
-        
+
         // Default command
         // Command: /p info, /p help
         if (args.length == 1 && (args[0].equalsIgnoreCase("help") || args[0].equalsIgnoreCase("info"))) {
@@ -58,7 +58,7 @@ public class VoxelPerformerCommand extends VoxelCommand {
             if (brush instanceof IPerformerBrush) {
                 boolean success = ((IPerformerBrush) brush).parsePerformer(args[0], snipeData);
                 if (!success) {
-                    player.sendMessage(ChatColor.RED + "No such performer with the handle " + ChatColor.DARK_RED + "'" + args[1] + "'" + ChatColor.DARK_RED + " exists.");
+                    player.sendMessage(ChatColor.RED + "No such performer with the handle " + ChatColor.DARK_RED + "'" + args[0] + "'" + ChatColor.RED + " exists.");
                 }
             } else {
                 player.sendMessage("The active brush is not a performer brush.");
@@ -74,7 +74,7 @@ public class VoxelPerformerCommand extends VoxelCommand {
         if (args.length == 1) {
             return getTabCompletion(args.length);
         }
-        
+
         return new ArrayList<>();
     }
 }
