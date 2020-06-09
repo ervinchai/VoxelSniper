@@ -193,6 +193,14 @@ public class ErodeBrush extends Brush {
     }
 
     /**
+     * 
+     * @return the current preset name
+     */
+    public String getPresetName() {
+        return presetName;
+    }
+
+    /**
      * @author MikeMatrix
      */
     private enum Preset {
