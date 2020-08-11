@@ -40,7 +40,6 @@ public class ErodeBlendBrush extends Brush {
     public void parseParameters(String triggerHandle, String[] params, SnipeData v) {
 
         if (params[0].equalsIgnoreCase("water")) {
-            this.erodeBrush.parseParameters(triggerHandle, params, v);
             this.blendBallBrush.parseParameters(triggerHandle, params, v);
         } else if (params[0].equalsIgnoreCase("info")) {
             v.sendMessage(ChatColor.GOLD + "Erode Blend Brush Parameters:");
