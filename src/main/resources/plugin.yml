@@ -105,6 +105,7 @@ permissions:
       voxelsniper.brush.entityremoval: true
       voxelsniper.brush.eraser: true
       voxelsniper.brush.erode: true
+      voxelsniper.brush.erodeblend: true
       voxelsniper.brush.extrude: true
       voxelsniper.brush.filldown: true
       voxelsniper.brush.flatocean: true
@@ -209,6 +210,8 @@ permissions:
   voxelsniper.brush.eraser:
     default: op
   voxelsniper.brush.erode:
+    default: op
+  voxelsniper.brush.erodeblend:
     default: op
   voxelsniper.brush.extrude:
     default: op

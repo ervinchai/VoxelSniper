@@ -30,6 +30,7 @@ import com.thevoxelbox.voxelsniper.brush.EllipsoidBrush;
 import com.thevoxelbox.voxelsniper.brush.EntityBrush;
 import com.thevoxelbox.voxelsniper.brush.EntityRemovalBrush;
 import com.thevoxelbox.voxelsniper.brush.EraserBrush;
+import com.thevoxelbox.voxelsniper.brush.ErodeBlendBrush;
 import com.thevoxelbox.voxelsniper.brush.ErodeBrush;
 import com.thevoxelbox.voxelsniper.brush.ExtrudeBrush;
 import com.thevoxelbox.voxelsniper.brush.FillDownBrush;
@@ -132,6 +133,7 @@ public class VoxelBrushManager {
         brushManager.registerSniperBrush(EntityRemovalBrush.class, "er", "entityremoval");
         brushManager.registerSniperBrush(EraserBrush.class, "erase", "eraser");
         brushManager.registerSniperBrush(ErodeBrush.class, "e", "erode");
+        brushManager.registerSniperBrush(ErodeBlendBrush.class, "eb", "erodeblend");
         brushManager.registerSniperBrush(ExtrudeBrush.class, "ex", "extrude");
         brushManager.registerSniperBrush(FillDownBrush.class, "fd", "filldown");
         brushManager.registerSniperBrush(FlatOceanBrush.class, "fo", "flatocean");
