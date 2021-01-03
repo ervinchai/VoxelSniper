@@ -147,7 +147,7 @@ public class HeatRayBrush extends Brush {
                             continue;
                         }
 
-                        if (!currentBlock.getType().equals(Material.AIR)) {
+                        if (!currentBlock.getType().isAir()) {
                             final double airDensity = generator.noise(currentLocation.getX(), currentLocation.getY(), currentLocation.getZ(), this.octaves, this.frequency, this.amplitude);
                             final double fireDensity = generator.noise(currentLocation.getX(), currentLocation.getY(), currentLocation.getZ(), this.octaves, this.frequency, this.amplitude);
                             final double cobbleDensity = generator.noise(currentLocation.getX(), currentLocation.getY(), currentLocation.getZ(), this.octaves, this.frequency, this.amplitude);
@@ -170,7 +170,7 @@ public class HeatRayBrush extends Brush {
                                 }
                             } else if (airDensity >= HeatRayBrush.REQUIRED_AIR_DENSITY) {
                                 undo.put(currentBlock);
-                                if (currentBlock.getType() != Material.AIR) {
+                                if (!currentBlock.getType().isAir()) {
                                     currentBlock.setType(Material.AIR);
                                 }
                             }
